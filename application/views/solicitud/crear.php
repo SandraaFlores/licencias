@@ -23,13 +23,17 @@ if (!$conexion) {
 	<div class="row pt-4">
 		<div class="col-sm-12 mx-auto">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<img src="/images/optima.png" alt="Optima">
-					<h4 class="mb-0 text-center">Registro de usuarios en platafoma SAP.</h4>
-					<h4 class="mb-0 text-center">Departamento de Sistemas.</h4>
+				<div class="panel-heading col-sm-12">
+					<div class="col-sm-3 mx-auto">
+						<img src="assets/images/optima.png" alt="Optima" width="200" height="70">
+					</div>
+					<div class="col-sm-9 mx-auto">
+						<h4 class="mb-0 text-left">Registro de usuarios en platafoma SAP.</h4>
+						<h4 class="mb-0 text-left">Departamento de Sistemas.</h4>
+					</div>
 				</div>
 				<div class="panel-body" style="padding: 50px">
-					<form class="form" role="form">
+					<form method="post" action="<?=base_url("solicitudController/insert");?>">
 						<h4 align="right">
 							<?php
 							date_default_timezone_set("America/Mexico_City");
@@ -89,9 +93,16 @@ if (!$conexion) {
 						<div class="form-group row mx-0">
 							<label class="col-lg-4 col-form-label form-control-label"
 								   for="justification">Justificación:</label>
-							<textarea id="justification" name="justification" rows="4" cols="50"
-									  placeholder="Escribe una justificación de tu solicitud."
+							<textarea id="justification" name="justification" rows="4" cols="10"
+									  placeholder="Escribe una justificación de tu solicitud aquí."
 									  class="form-control col-lg-6" required></textarea>
+						</div>
+						<div class="form-group row mx-0">
+							<label class="col-lg-4 col-form-label form-control-label"
+								   for="authorizations">Autorizaciones requeridas:</label>
+							<textarea id="authorizations" name="authorizations" rows="4" cols="10"
+									  placeholder="Escribe las autorizaciones requeridas de tu solicitud aquí (opcional)."
+									  class="form-control col-lg-6"></textarea>
 						</div>
 						<div class="form-group row mx-0 autocomplete">
 							<label class="col-lg-4 col-form-label form-control-label" for="userCopy">Copia del
@@ -115,11 +126,13 @@ if (!$conexion) {
 						<div class="form-group row mx-0">
 							<label class="col-lg-4 col-form-label form-control-label" for="observation">Observaciones
 								generales:</label>
-							<textarea id="observation" name="observation" rows="4" cols="50"
-									  placeholder="Observaciones generales."
+							<textarea id="observation" name="observation" rows="4" cols="10"
+									  placeholder="Escribe tus observaciones generales aquí (opcional)."
 									  class="form-control col-lg-6"></textarea>
 						</div>
-						<button type="submit" class="btn btn-info btn-lg btn-responsive" id="aceptar">Aceptar</button>
+						<div class="form-group row mx-0">
+							<button type="submit" class="btn btn-info btn-small btn-responsive" id="aceptar">Aceptar</button>
+						</div>
 					</form>
 				</div>
 			</div>
