@@ -8,11 +8,13 @@ class Solicitud extends CI_Controller {
 	}
 
 	public function index(){
+		$this->load->model('solicitud');
 		$this->load->view('solicitud/crear');
 	}
 
 	public function cargarVistas(){
 		$this->load->view('templates/header');
+		$this->load->view('solicitud/crear');
 		$this->load->view('templates/footer');
 
 	}
