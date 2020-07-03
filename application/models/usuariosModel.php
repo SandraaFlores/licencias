@@ -25,6 +25,15 @@ class usuariosModel extends CI_Model
 
 	}
 
+	public function getUsers(){
+	}
+
+	public function ver(){
+		$consulta=$this->db->query("SELECT * FROM users;");
+		return $consulta->result();
+	}
+
+
 }
 
 ?>

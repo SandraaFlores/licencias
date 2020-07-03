@@ -36,6 +36,11 @@ class usuariosController extends CI_Controller {
 		redirect(base_url());
 	}
 
+	public function listar(){
+		$this->load->view('usuarios/listar');
+		$this->load->view('templates/footer');
+	}
+
 	public function inseert($id = null)
 	{
 		$data = array(
