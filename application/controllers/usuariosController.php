@@ -44,7 +44,7 @@ class UsuariosController extends CI_Controller {
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
 			'user' => $this->input->post('user'),
-			'password' => $this->input->post('password'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 			'departments_id' => $this->input->post('departments'),
 			'roles_id' => 1,
 			'create_time' => date('Y-m-d H:i:s')
@@ -54,6 +54,18 @@ class UsuariosController extends CI_Controller {
 	}
 
 
+	//Login
+	public function verifica(){
+		$user = $this->input->post('user');
+		$password = $this->input->post('password');
+
+		if($this->usuariosModel->login($user,$password))
+			redirect('InicioController/');
+		else{
+
+			redirect('/');
+		}
+	}
 
 }
 ?>
