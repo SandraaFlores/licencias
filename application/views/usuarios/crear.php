@@ -1,10 +1,5 @@
 <?php
 $conexion = mysqli_connect('localhost', 'root', '', 'licencias');
-if (!$conexion) {
-	echo 'Error';
-} else {
-	echo 'Conectado';
-}
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +28,7 @@ if (!$conexion) {
 					</div>
 				</div>
 				<div class="panel-body" style="padding: 50px">
-					<form method="post" action="<?=base_url("usuariosController/insert");?>">
+					<form method="post" action="<?=base_url()."usuariosController/insertar";?>">
 						<h4 align="right">
 							<?php
 							date_default_timezone_set("America/Mexico_City");
