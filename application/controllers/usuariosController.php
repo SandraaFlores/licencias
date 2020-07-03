@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class usuariosController extends CI_Controller {
+class UsuariosController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
@@ -19,13 +19,14 @@ class usuariosController extends CI_Controller {
 	{
 		if ($this->input->post("submit")) {
 			$insert = $this->usuariosModel->insert(
+				1,
 				$this->input->post('name'),
 				$this->input->post('first_name'),
 				$this->input->post('last_name'),
 				$this->input->post('user'),
 				$this->input->post('password'),
-				$this->input->post('departments'),
-				$this->input->post('role')
+				1,
+				1
 			);
 		}
 		if ($insert == true) {
@@ -36,7 +37,7 @@ class usuariosController extends CI_Controller {
 		redirect(base_url());
 	}
 
-	public function inseert($id = null)
+	public function insertar()
 	{
 		$data = array(
 			'name' => $this->input->post('name'),
@@ -44,12 +45,12 @@ class usuariosController extends CI_Controller {
 			'last_name' => $this->input->post('last_name'),
 			'user' => $this->input->post('user'),
 			'password' => $this->input->post('password'),
-			'departments' => $this->input->post('departments'),
-			'role' => $this->input->post('role'),
-			'create_time' => date('d-m-Y')
+			'departments_id' => $this->input->post('departments'),
+			'roles_id' => 1,
+			'create_time' => date('Y-m-d H:i:s')
 		);
-		$this->solicitudModel->save($data);
-		redirect('usuariosController/index');
+		$this->usuariosModel->save($data);
+		redirect('UsuariosController/nuevo');
 	}
 
 
