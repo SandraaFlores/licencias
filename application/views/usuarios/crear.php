@@ -31,7 +31,6 @@ $conexion = mysqli_connect('localhost', 'root', '', 'licencias');
 					<form method="post" action="<?=base_url()."usuariosController/insertar";?>">
 						<h4 align="right">
 							<?php
-							date_default_timezone_set("America/Mexico_City");
 							$fechaActual = date('d-m-Y');
 							echo $fechaActual;
 							?>
