@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class solicitudModel extends CI_Model
+class SolicitudModel extends CI_Model
 {
 	public function __construct()
 	{

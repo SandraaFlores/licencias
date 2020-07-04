@@ -9,28 +9,26 @@ class UsuariosModel extends CI_Model
 		$this->load->database();
 	}
 
-	public function insert($id,$name, $first_name, $last_name, $user, $password, $departments, $role)
+	public function save($data)
 	{
-		$consulta = $this->db->query("INSERT INTO users VALUES($id,'$name','$first_name','$last_name','$user','$password','$departments','$role');");
-		if ($consulta == true) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	public function save($data){
 		$this->db->insert('users', $data);
-
 	}
 
-	public function getUsers(){
+	public function getUsers()
+	{
+		$sql = $this->db->get('users');
+		return $sql->result();
 	}
 
-	public function ver(){
-		$consulta=$this->db->query("SELECT * FROM users;");
+	public function ver()
+	{
+		$consulta = $this->db->query("SELECT u.id, u.name, u.first_name, u.last_name, d.name as departamento, u.role FROM users u INNER JOIN departments d ON (u.DEPARTMENTS_id = d.id);");
 		return $consulta->result();
+	}
+
+	public function delete($id){
+		$this->db->where('id', $id);
+		$this->db->delete('users');
 	}
 
 
