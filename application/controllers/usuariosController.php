@@ -18,11 +18,26 @@ class UsuariosController extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function listar()
+	public function insert()
 	{
-		$data = array('usuarios' => $this->UsuariosModel->ver());
-		$this->load->view('usuarios/listar', $data);
-		$this->load->view('templates/footer');
+		if ($this->input->post("submit")) {
+			$insert = $this->usuariosModel->insert(
+				1,
+				$this->input->post('name'),
+				$this->input->post('first_name'),
+				$this->input->post('last_name'),
+				$this->input->post('user'),
+				$this->input->post('password'),
+				1,
+				1
+			);
+		}
+		if ($insert == true) {
+			$this->session->set_flashdata('correcto', 'Registro añadido correctamente');
+		} else {
+			$this->session->set_flashdata('incorrecto', 'Registro añadido correctamente');
+		}
+		redirect(base_url());
 	}
 
 	public function insertar()
@@ -32,7 +47,7 @@ class UsuariosController extends CI_Controller
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
 			'user' => $this->input->post('user'),
-			'password' => $this->input->post('password'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 			'departments_id' => $this->input->post('departments'),
 			'role' => $this->input->post('role'),
 			'create_time' => date('Y-m-d H:i:s')
@@ -57,7 +72,20 @@ class UsuariosController extends CI_Controller
 				->set_status_header(200);
 		}
 	}
+
+
+	//Login
+	public function verifica(){
+		$user = $this->input->post('user');
+		$password = $this->input->post('password');
+
+		if($this->usuariosModel->login($user,$password))
+			redirect('InicioController/');
+		else{
+
+			redirect('/');
+		}
+	}
+
 }
-
 ?>
-
