@@ -23,7 +23,7 @@
 			<? if ($this->session->userdata()) {
 				?>
 				<li class="nav-item active">
-					<a class="nav-link" href="#"><i class="fa fa-user"></i> </a>
+					<a class="nav-link" href="#"><i class="fa fa-user"></i> <?= getName() ?></a>
 				</li>
 				<li class="nav-item active">
 					<a class=" nav-link" href="<?= base_url('UsuariosController/logout') ?>"><i
