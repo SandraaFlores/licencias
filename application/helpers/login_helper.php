@@ -9,12 +9,12 @@ function is_logged_in(){
         return true;
 }
 
-function getRole(){
+function getName(){
 
     $CI =& get_instance();
     $user = $CI->session->userdata('user_data');
     if(!isset($user))
         return null;
     else
-        return $user["role"];
+        return $user["name"];
 }
