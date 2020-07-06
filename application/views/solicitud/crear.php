@@ -26,7 +26,7 @@ if (!$conexion) {
 		<div class="col-sm-12 mx-auto">
 			<div class="card">
 				<div class="card-header col-sm-12">
-					<div class="col-sm-1">
+					<div>
 						<img src="<?= base_url('assets/images/optima.png" alt="Optima" width="200" height="70"') ?>"/>
 					</div>
 					<div class="col-sm-6 mx-auto">
@@ -35,7 +35,7 @@ if (!$conexion) {
 					</div>
 				</div>
 				<div class="card-body" style="padding: 10px">
-					<form method="post" action="<?= base_url("solicitudController/insertar"); ?>">
+					<form method="post" action="<?= base_url("SolicitudController/insertar"); ?>">
 						<h4 align="right">
 							<?php
 							date_default_timezone_set("America/Mexico_City");

@@ -13,18 +13,31 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1f00b4;">
-	<a class="navbar-brand" href="#">Avante</a>
+	<a class="navbar-brand" href="<?= base_url('inicio') ?>">Avante</a>
+
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			<li class="nav-item active">
-				<a class="nav-link" href="#">Home</a>
+				<a class="nav-link" href="<?= base_url('solicitudes/new') ?>">Solicitar Licencia</a>
 			</li>
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Link</a>
-			</li>
-			<li class=" navbar-inline my-2 my-lg-0 nav-item active">
-				<a class=" nav-link" href="#"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-			</li>
+			<? if ($this->session->userdata()) {
+				?>
+				<li class="nav-item active">
+					<a class="nav-link" href="#"><i class="fa fa-user"></i> </a>
+				</li>
+				<li class="nav-item active">
+					<a class=" nav-link" href="<?= base_url('UsuariosController/logout') ?>"><i
+							class="fa fa-sign-out"></i> Cerrar Sesión</a>
+				</li>
+				<?
+			} else {
+				?>
+				<li class="nav-item active">
+					<a class=" nav-link" href="<?= base_url('InicioController/login') ?>"><i class="fa fa-sign-in"></i>
+						Iniciar Sesión</a>
+				</li>
+				<?
+			} ?>
 		</ul>
 	</div>
 </nav>

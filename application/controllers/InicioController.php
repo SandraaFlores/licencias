@@ -1,21 +1,27 @@
-  <?php
-  defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-  class InicioController extends CI_Controller {
-  	public function __construct()
-  	{
-      parent::__construct();
+class InicioController extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model("UsuariosModel");
+		$this->load->library(array('form_validation','email','pagination', 'session'));
+	}
 
-        //Función para validar si ya inicio sesión
-        if(!is_logged_in()){
-  			     redirect('/');
-  		  }
-    }
+	public function index()
+	{
+		if (!is_logged_in()) {
+			redirect('InicioController/login');
+		}else{
+			$this->load->view('templates/header');
+			$this->load->view('login/bienvenido');
+			$this->load->view('templates/footer');
+		}
+	}
 
-    public function index(){
-
-      //Aquí se debe retornar la página principal cuando el usuario ya esté loggueado
-      echo "Ya estoy loggueado";
-    }
-
-  }
+	public function login(){
+		$this->load->view('login/login');
+	}
+}

@@ -33,27 +33,22 @@ class UsuariosModel extends CI_Model
 	}
 
 	public function login($nombre, $password)
-    {
-			$this->db->join('roles r', 'r.id = users.roles_id');
-		 $query = $this->db->get_where('users', array('user' => $nombre));
-		 if($query->num_rows() == 1)
-		 {
-				 $row=$query->row();
-				 if(password_verify($password, $row->password))
-				 {
-						 $data=array('user_data'=>array(
-								 'user'=>$row->user,
-								 'r.name'=>$row->nombre
-								 )
-						 );
-						 $this->session->set_userdata($data);
-						 return true;
-				 }
-		 }
-		 $this->session->unset_userdata('user_data');
-		 return false;
-    }
-
+	{
+		$query = $this->db->get_where('users', array('user' => $nombre));
+		if ($query->num_rows() == 1) {
+			$row = $query->row();
+			if (password_verify($password, $row->password)) {
+				$data = array('user_data' => array(
+					'user' => $row->user,
+				)
+				);
+				$this->session->set_userdata($data);
+				return true;
+			}
+		}
+		$this->session->unset_userdata('user_data');
+		return false;
+	}
 }
 
 ?>

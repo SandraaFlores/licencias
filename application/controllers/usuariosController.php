@@ -8,8 +8,13 @@ class UsuariosController extends CI_Controller
 		parent::__construct();
 		$this->load->helper("url");
 		$this->load->model("UsuariosModel");
-		$this->load->library(array('form_validation','email','pagination', 'session'));
+		$this->load->library(array('form_validation', 'email', 'pagination', 'session'));
 		$this->load->helper("users/users_validation");
+	}
+
+	public function index()
+	{
+
 	}
 
 	public function nuevo()
@@ -18,26 +23,11 @@ class UsuariosController extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function insert()
+	public function listar()
 	{
-		if ($this->input->post("submit")) {
-			$insert = $this->usuariosModel->insert(
-				1,
-				$this->input->post('name'),
-				$this->input->post('first_name'),
-				$this->input->post('last_name'),
-				$this->input->post('user'),
-				$this->input->post('password'),
-				1,
-				1
-			);
-		}
-		if ($insert == true) {
-			$this->session->set_flashdata('correcto', 'Registro añadido correctamente');
-		} else {
-			$this->session->set_flashdata('incorrecto', 'Registro añadido correctamente');
-		}
-		redirect(base_url());
+		$data = array('usuarios' => $this->UsuariosModel->ver());
+		$this->load->view('usuarios/listar', $data);
+		$this->load->view('templates/footer');
 	}
 
 	public function insertar()
@@ -48,44 +38,50 @@ class UsuariosController extends CI_Controller
 			'last_name' => $this->input->post('last_name'),
 			'user' => $this->input->post('user'),
 			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-			'departments_id' => $this->input->post('departments'),
 			'role' => $this->input->post('role'),
-			'create_time' => date('Y-m-d H:i:s')
+			'create_time' => date('Y-m-d H:i:s'),
+			'departments_id' => $this->input->post('departments'),
+			'levels_id' => 2
 		);
-		if(empty($data)){
+		if (empty($data)) {
 			$this->output->set_status_header(400);
-		}else{
+		} else {
 			$this->UsuariosModel->save($data);
 			redirect('UsuariosController/nuevo');
 		}
 	}
 
-	public function delete(){
+	public function delete()
+	{
 		$idUsuario = $this->input->post('id', true);
-		if(empty($idUsuario)){
+		if (empty($idUsuario)) {
 			$this->output
 				->set_status_header(400)
-				->set_output(json_encode(array('msg'=>'El id no puede estar vació')));
-		}else{
+				->set_output(json_encode(array('msg' => 'El id no puede estar vació')));
+		} else {
 			$this->UsuariosModel->delete($idUsuario);
 			$this->output
 				->set_status_header(200);
 		}
 	}
 
-
 	//Login
-	public function verifica(){
+	public function verifica()
+	{
 		$user = $this->input->post('user');
 		$password = $this->input->post('password');
 
-		if($this->usuariosModel->login($user,$password))
-			redirect('InicioController/');
-		else{
-
-			redirect('/');
+		if ($this->UsuariosModel->login($user, $password))
+			redirect('InicioController');
+		else {
+			redirect('/login');
 		}
 	}
 
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('/login');
+	}
 }
+
 ?>

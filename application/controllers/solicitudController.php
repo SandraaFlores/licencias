@@ -18,60 +18,26 @@ class SolicitudController extends CI_Controller {
 
 	}
 
-	public function insert()
-	{
-		if ($this->input->post("submit")) {
-			$insert = $this->solicitudModel->insert(
-				$this->input->post('name'),
-				$this->input->post('first_name'),
-				$this->input->post('last_name'),
-				$this->input->post('departments'),
-				$this->input->post('system'),
-				$this->input->post('role'),
-				$this->input->post('justification'),
-				$this->input->post('authorization'),
-				$this->input->post('user_copy'),
-				$this->input->post('types_of_user'),
-				$this->input->post('observation')
-			);
-		}
-		if ($insert == true) {
-			$this->session->set_flashdata('correcto', 'Registro añadido correctamente');
-		} else {
-			$this->session->set_flashdata('incorrecto', 'Registro añadido correctamente');
-		}
-		redirect(base_url());
-	}
-
-	public function isert($id = null)
+	public function insertar($id = null)
 	{
 		$data = array(
-			'name' => $this->input->post('name'),
-			'first_name' => $this->input->post('first_name'),
-			'last_name' => $this->input->post('last_name'),
-			'departments' => $this->input->post('departments'),
-			'system' => $this->input->post('system'),
-			'role' => $this->input->post('role'),
-			'authorization' => $this->input->post('authorization'),
+			'create_time' => date('d-m-Y'),
 			'justification' => $this->input->post('justification'),
 			'observation' => $this->input->post('observation'),
 			'status' => 0,
 			'user_copy' => $this->input->post('user_copy'),
-			'types_of_user' => $this->input->post('types_of_user'),
-			'create_time' => date('d-m-Y')
+			'authorization' => $this->input->post('authorization'),
+			'users_id' => $this->input->post(''),
+			'types_of_user_id' => $this->input->post('types_of_user'),
+			'systems_id' => $this->input->post('system'),
+			'approvals_id' => 0
 		);
-		if ($id) {
-			$this->db->where('id', $id);
-			$this->db->update('licencias', $data);
-		} else {
-			$this->db->insert('licencias', $data);
-
+		if(empty($data)){
+			$this->output->set_status_header(400);
+		}else{
+			$this->SolicitudModel->save($data);
+			redirect('SolicitudController/cargarVistas');
 		}
-		$this->solicitudModel->save($data);
-		redirect('solicitudController/index');
 	}
-
-
-
 }
 ?>

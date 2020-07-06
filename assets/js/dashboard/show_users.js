@@ -5,7 +5,7 @@
 		var id = $(this).attr('data_id');
 		var self = this;
 		Swal.fire({
-			title: '¿Estás seguro que deseas eliminar el registro de '+fila+'?',
+			title: '¿Estás seguro que deseas eliminar el registro de ' + fila + '?',
 			text: "¡No podrás revertir esto!",
 			icon: 'warning',
 			showCancelButton: true,
@@ -18,16 +18,16 @@
 				$.ajax({
 					type: 'POST',
 					url: '/CodeIgniter/UsuariosController/delete',
-					data: {'id':id},
-					success: function(){
+					data: {'id': id},
+					success: function () {
 						$(self).parents('tr').remove();
 						Swal(
 							'Eliminado',
 							'El registro se ha eliminado correctamente.',
 							'success'
 						)
-					},statusCode: {
-						400: function(data){
+					}, statusCode: {
+						400: function (data) {
 							var json = JSON.parse(data.responseText);
 							Swal(
 								'Error!',
@@ -41,31 +41,7 @@
 		})
 	})
 
-
-	$.ajax({
-		type: 'POST',
-		url: '/hospital/users/delete',
-		data: {'id':id},
-		success: function(){
-			Swal(
-				'Eliminado!',
-				'El registro ha sido eliminado satisfactoriamente.',
-				'success'
-			)
-		},statusCode: {
-			400: function(data){
-				var json = JSON.parse(data.responseText);
-				Swal(
-					'Error!',
-					json.msg,
-					'error'
-				)
-			}
-		}
-	});
-
-
-		$("#submit").click(function () {
+	$("#submit").click(function () {
 		Swal.fire(
 			'¡Correcto!',
 			'El registro ha sidpo creado exitosamente.',
