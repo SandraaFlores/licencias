@@ -40,6 +40,7 @@ class UsuariosModel extends CI_Model
 			if (password_verify($password, $row->password)) {
 				$data = array('user_data' => array(
 					'user' => $row->user,
+					'name'=>$row->name." ".$row->first_name." ".$row->last_name
 				)
 				);
 				$this->session->set_userdata($data);
