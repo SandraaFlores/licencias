@@ -6,7 +6,7 @@ class SolicitudController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper("url");
-		$this->load->model("solicitudModel");
+		$this->load->model("SolicitudModel");
 		$this->load->library(array('form_validation','email','pagination'));
 
 	}
@@ -21,16 +21,16 @@ class SolicitudController extends CI_Controller {
 	public function insertar($id = null)
 	{
 		$data = array(
-			'create_time' => date('d-m-Y'),
+			'create_time' => date('Y-m-d H:i:s'),
 			'justification' => $this->input->post('justification'),
 			'observation' => $this->input->post('observation'),
 			'status' => 0,
 			'user_copy' => $this->input->post('user_copy'),
-			'authorization' => $this->input->post('authorization'),
-			'users_id' => $this->input->post(''),
-			'types_of_user_id' => $this->input->post('types_of_user'),
+			'authorization' => $this->input->post('authorizations'),
+			'users_id' => intval(getId()),
+			'types_of_users_id' => $this->input->post('types_of_user'),
 			'systems_id' => $this->input->post('system'),
-			'approvals_id' => 0
+			'approvals_id' => 1
 		);
 		if(empty($data)){
 			$this->output->set_status_header(400);
@@ -39,5 +39,12 @@ class SolicitudController extends CI_Controller {
 			redirect('SolicitudController/cargarVistas');
 		}
 	}
+
+	public function listar()
+	{
+		$data = array('solicitudes' => $this->SolicitudModel->ver());
+		$this->load->view('solicitud/listar', $data);
+		$this->load->view('templates/footer');
+	}
 }
-?>
+

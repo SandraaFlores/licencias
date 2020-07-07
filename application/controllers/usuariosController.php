@@ -20,7 +20,9 @@ class UsuariosController extends CI_Controller
 	public function nuevo()
 	{
 		$this->load->view('usuarios/crear');
-		$this->load->view('templates/footer');
+		$success= $this->session->flashdata("success");
+		$this->load->view('templates/footer', $success);
+
 	}
 
 	public function listar()
@@ -47,6 +49,7 @@ class UsuariosController extends CI_Controller
 			$this->output->set_status_header(400);
 		} else {
 			$this->UsuariosModel->save($data);
+			$this->session->set_flashdata("success", true);
 			redirect('UsuariosController/nuevo');
 		}
 	}
@@ -79,6 +82,7 @@ class UsuariosController extends CI_Controller
 	}
 
 	public function logout(){
+		$this->session->unset_userdata('user_data');
 		$this->session->sess_destroy();
 		redirect('/login');
 	}

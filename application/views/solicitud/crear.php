@@ -45,7 +45,7 @@ if (!$conexion) {
 						</h4>
 						<div class="form-group row mx-0">
 							<label class="col-lg-2 col-form-label form-control-label" for="system">Sistema:</label>
-							<select id="system" name="system" class="form-control col-lg-3" required>
+							<select id="system" name="system" class="form-control col-lg-3" required autofocus>
 								<option value="0">Selecciona una opción:</option>
 								<?php
 								$sql = "SELECT * FROM systems";
@@ -71,10 +71,10 @@ if (!$conexion) {
 									  class="form-control col-lg-8"></textarea>
 						</div>
 						<div class="form-group row mx-0 autocomplete">
-							<label class="col-lg-2 col-form-label form-control-label" for="userCopy">Copia del
+							<label class="col-lg-2 col-form-label form-control-label" for="user_copy">Copia del
 								usuario:</label>
-							<input type="text" class="form-control col-lg-3" placeholder="Copia del usuario"
-								   id="userCopy">
+							<input type="text" class="form-control col-lg-3" name="user_copy" placeholder="Copia del usuario"
+								   id="user_copy">
 
 							<label class="col-lg-2 col-form-label form-control-label" for="types_of_user">Tipo de
 								usuario:</label>
@@ -98,7 +98,7 @@ if (!$conexion) {
 						</div>
 						<div class="button form-group">
 							<div class="center">
-								<button type="submit" class="btn btn-info btn-small"  id="aceptar">Guardar
+								<button type="submit" class="btn btn-info btn-small"  id="submit" name="submit">Guardar
 								</button>
 							</div>
 						</div>

@@ -41,11 +41,4 @@
 		})
 	})
 
-	$("#submit").click(function () {
-		Swal.fire(
-			'¡Correcto!',
-			'El registro ha sidpo creado exitosamente.',
-			'success'
-		)
-	})
 })();

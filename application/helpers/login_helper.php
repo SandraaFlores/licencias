@@ -1,20 +1,41 @@
 <?php
 
-function is_logged_in(){
-    $CI =& get_instance();
-    $user = $CI->session->userdata('user_data');
-    if(!isset($user))
-        return false;
-    else
-        return true;
+function is_logged_in()
+{
+	$CI =& get_instance();
+	$user = $CI->session->userdata('user_data');
+	if (!isset($user))
+		return false;
+	else
+		return true;
 }
 
-function getRole(){
+function getRole()
+{
+	$CI =& get_instance();
+	$user = $CI->session->userdata('user_data');
+	if (!isset($user))
+		return null;
+	else
+		return $user["role"];
+}
 
-    $CI =& get_instance();
-    $user = $CI->session->userdata('user_data');
-    if(!isset($user))
-        return null;
-    else
-        return $user["role"];
+function getName()
+{
+	$CI =& get_instance();
+	$user = $CI->session->userdata('user_data');
+	if (!isset($user))
+		return null;
+	else
+	return $user["name"];
+}
+
+function getId()
+{
+	$CI =& get_instance();
+	$user = $CI->session->userdata('user_data');
+	if (!isset($user))
+		return null;
+	else
+		return $user["id"];
 }

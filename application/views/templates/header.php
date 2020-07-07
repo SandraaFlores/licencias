@@ -20,10 +20,10 @@
 			<li class="nav-item active">
 				<a class="nav-link" href="<?= base_url('solicitudes/new') ?>">Solicitar Licencia</a>
 			</li>
-			<? if ($this->session->userdata()) {
+			<? if (is_logged_in()) {
 				?>
 				<li class="nav-item active">
-					<a class="nav-link" href="#"><i class="fa fa-user"></i> </a>
+					<a class="nav-link" href="#"><i class="fa fa-user"></i><?= getName() ?></a>
 				</li>
 				<li class="nav-item active">
 					<a class=" nav-link" href="<?= base_url('UsuariosController/logout') ?>"><i

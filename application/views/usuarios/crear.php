@@ -1,5 +1,6 @@
 <?php
 $conexion = mysqli_connect('localhost', 'root', '', 'licencias');
+
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +11,7 @@ $conexion = mysqli_connect('localhost', 'root', '', 'licencias');
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="<?= base_url('assets/libs/sweetalert2/dist/sweetalert2.min.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('assets/css/forms.css') ?>">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -87,7 +89,7 @@ $conexion = mysqli_connect('localhost', 'root', '', 'licencias');
 						</div>
 						<div class="button form-group">
 							<div class="center">
-								<button type="submit" class="btn btn-primary btn-responsive" name="submit"
+								<button type="submit" class="btn btn-primary btn-responsive" name=""
 										id="submit">Guardar
 								</button>
 							</div>
