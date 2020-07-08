@@ -28,8 +28,8 @@
 								   required autofocus>
 						</div>
 						<div class="form-group row mx-0">
-							<label class="col-lg-3 col-form-label form-control-label" for="password">Contraseña</label>
-							<input type="password" class="form-control col-lg-6" placeholder="Contraseña:"
+							<label class="col-lg-3 col-form-label form-control-label" for="password">Contraseña:</label>
+							<input type="password" class="form-control col-lg-6" placeholder="Contraseña"
 								   name="password" required>
 						</div>
 						<div class="button form-group">

@@ -42,9 +42,15 @@ class SolicitudController extends CI_Controller {
 
 	public function listar()
 	{
+		$this->load->view('templates/header');
 		$data = array('solicitudes' => $this->SolicitudModel->ver());
 		$this->load->view('solicitud/listar', $data);
 		$this->load->view('templates/footer');
+	}
+
+	public function show($id = 0){
+		$data = array('vista'=> $this->SolicitudModel->getUser($id)[0]);
+		$this->load->view('solicitud/show', $data);
 	}
 }
 

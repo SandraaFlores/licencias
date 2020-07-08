@@ -21,7 +21,7 @@ class UsuariosController extends CI_Controller
 	{
 		$this->load->view('usuarios/crear');
 		$success= $this->session->flashdata("success");
-		$this->load->view('templates/footer', $success);
+		$this->load->view('templates/footer', array('success' => $success));
 
 	}
 

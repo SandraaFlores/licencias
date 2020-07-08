@@ -55,7 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['usuarios/new']='UsuariosController/nuevo';
 $route['usuarios/list']='UsuariosController/listar';
 $route['solicitudes/new']='SolicitudController/cargarVistas';
-$route['solicitudes/list']='SolicitudController/list';
+$route['solicitudes/list']='SolicitudController/listar';
 $route['login']='InicioController/login';
 $route['inicio']='InicioController';
 

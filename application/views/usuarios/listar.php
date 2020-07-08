@@ -37,7 +37,7 @@
 						<td><?= $item->departamento ?></td>
 						<td><?= $item->role ?></td>
 						<td><a class="btn btn-success" href="#" id="edit" role="button"><i class="fa fa-edit"></i></a> <a
-								class="btn btn-danger" href="#" id="delete" data_id="<?= $item->id ?>" role="button"><i class="fa fa-trash-o"></i></a></td>
+								class="btn btn-danger btn-delete" href="#" data_id="<?= $item->id ?>" role="button"><i class="fa fa-trash-o"></i></a></td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>

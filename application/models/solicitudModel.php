@@ -20,6 +20,12 @@ class SolicitudModel extends CI_Model
 		return $consulta->result();
 	}
 
+	public function getUser($id){
+		$consulta = $this->db->query("SELECT * FROM requests WHERE id = $id ");
+		return $consulta->result();
+
+	}
+
 }
 
 
