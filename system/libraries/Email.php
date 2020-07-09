@@ -1680,6 +1680,7 @@ class CI_Email {
 	 */
 	public function send($auto_clear = TRUE)
 	{
+
 		if ( ! isset($this->_headers['From']))
 		{
 			$this->_set_error_message('lang:email_no_from');
@@ -1709,6 +1710,7 @@ class CI_Email {
 			{
 				$this->clear();
 			}
+			echo 'respuesta';
 
 			return $result;
 		}
@@ -1716,6 +1718,7 @@ class CI_Email {
 		if ($this->_build_message() === FALSE)
 		{
 			return FALSE;
+			echo 'mensaje no construido';
 		}
 
 		$result = $this->_spool_email();
@@ -1724,7 +1727,7 @@ class CI_Email {
 		{
 			$this->clear();
 		}
-
+var_dump( $this->_debug_msg);
 		return $result;
 	}
 

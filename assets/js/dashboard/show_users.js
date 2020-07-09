@@ -58,8 +58,6 @@
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					type: 'POST',
-					url: '/CodeIgniter/UsuariosController/',
 					data: {'id': id},
 					success: function () {
 						$(self).parents('tr').remove();

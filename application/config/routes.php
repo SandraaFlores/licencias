@@ -58,4 +58,6 @@ $route['solicitudes/new']='SolicitudController/cargarVistas';
 $route['solicitudes/list']='SolicitudController/listar';
 $route['login']='InicioController/login';
 $route['inicio']='InicioController';
+$route['email']='SolicitudController/sendEmail';
+$route['correo']='SolicitudController/correo';
 

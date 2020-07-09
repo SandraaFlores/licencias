@@ -16,7 +16,7 @@ class SolicitudModel extends CI_Model
 
 	public function ver()
 	{
-		$consulta = $this->db->query("SELECT r.id, u.name, u.first_name, u.last_name, r.create_time FROM requests r INNER JOIN users u ON (r.USERS_id = u.id);");
+		$consulta = $this->db->query("SELECT r.id, u.name, u.first_name, u.last_name, r.create_time FROM requests r INNER JOIN users u ON (r.USERS_id = u.id) WHERE status=0;");
 		return $consulta->result();
 	}
 
