@@ -54,10 +54,19 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['usuarios/new']='UsuariosController/nuevo';
 $route['usuarios/list']='UsuariosController/listar';
+$route['usuarios/update']='UsuariosController/update';
+
 $route['solicitudes/new']='SolicitudController/cargarVistas';
+$route['solicitudes/list/(:num)']='SolicitudController/listar/$1';
 $route['solicitudes/list']='SolicitudController/listar';
+$route['solicitudes/list/accepted']='SolicitudController/listAccepted';
+$route['solicitudes/list/accepted/(:any)']='SolicitudController/listAccepted/$1';
+$route['solicitudes/list/cancel']='SolicitudController/listCancel';
+$route['solicitudes/list/cancel/(:any)']='SolicitudController/listCancel/$1';
+
 $route['login']='InicioController/login';
 $route['inicio']='InicioController';
 $route['email']='SolicitudController/sendEmail';
 $route['correo']='SolicitudController/correo';
+$route['request']='SolicitudController/accept';
 

@@ -14,7 +14,8 @@
 </head>
 
 <body>
-<div class="modal fade" id="solicitudModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="solicitudModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -33,8 +34,8 @@
 <div class="container">
 	<div class="row pt-4">
 		<div class="col-sm-12 mx-auto">
-			<h5 class="text-center">Licencias solicitadas</h5>
-			<table class="table table-bordered">
+			<h5 class="text-center"><?php echo $title?></h5>
+			<table class="table table-bordered wy-table-responsive w-100">
 				<thead>
 				<tr>
 					<th scope="col">Id</th>
@@ -48,15 +49,24 @@
 				<?php foreach ($solicitudes as $item): ?>
 					<tr>
 						<th scope="row"><?= $item->id ?></th>
-						<td><?= $item->name. " ". $item->first_name." ".$item->last_name?></td>
-						<td><?= date("d-m-Y H:i:s", strtotime($item-> create_time))?></td>
-						<td><a class="btn btn-warning btn-show" href="<?= base_url('SolicitudController/show/'.$item->id)?>" role="button"><i class="fa fa-eye"></i></a>
-						<td><a class="btn btn-success btn-acept" href="#" role="button"><i class="fa fa-check"></i></a>
-							<a class="btn btn-danger btn-delete2" href="#"  data_id="<?= $item->id ?>" role="button"><i class="fa fa-times"></i></a></td>
+						<td><?= $item->name . " " . $item->first_name . " " . $item->last_name ?></td>
+						<td><?= date("d-m-Y H:i:s", strtotime($item->create_time)) ?></td>
+						<td><a class="btn btn-warning btn-show"
+							   href="<?= base_url('SolicitudController/show/' . $item->id) ?>" role="button"><i
+									class="fa fa-eye"></i></a>
+						<td>	<?php if ($item->status == 0){ ?>
+						<a class="btn btn-success btn-acept"
+							   href="<?= base_url('SolicitudController/accept/' . $item->id) ?>" role="button"><i
+									class="fa fa-check"></i></a>
+							<a class="btn btn-danger btn-cancel"
+							   href="<?= base_url('SolicitudController/cancel/' . $item->id) ?>" role="button"><i
+									class="fa fa-times"></i></a>
+						<?php } ?></td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php echo $this->pagination->create_links(); ?>
 		</div>
 	</div>
 </div>

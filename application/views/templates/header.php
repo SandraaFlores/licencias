@@ -17,27 +17,45 @@
 
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			<li class="nav-item active">
-				<a class="nav-link" href="<?= base_url('solicitudes/new') ?>">Solicitar Licencia</a>
-			</li>
-			<? if (is_logged_in()) {
-				?>
+			<?php if (getLevel() == 2) { ?>
+				<li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Licencias
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?= base_url('solicitudes/new') ?>">Solicitar licencia</a>
+					</div>
+				</li>
+
+			<?php } else { ?>
+				<li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Licencias
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<?= base_url('solicitudes/new') ?>">Solicitar licencia</a>
+						<a class="dropdown-item" href="<?= base_url('solicitudes/list') ?>">Solicitudes pendientes</a>
+						<a class="dropdown-item" href="<?= base_url('solicitudes/list/accepted') ?>">Solicitudes aceptadas</a>
+						<a class="dropdown-item" href="<?= base_url('solicitudes/list/cancel') ?>">Solicitudes canceladas</a>
+					</div>
+				</li>
+			<?php } ?>
+
+			<?php if ($this->session->userdata('user_data')) { ?>
 				<li class="nav-item active">
-					<a class="nav-link" href="#"><i class="fa fa-user"></i><?= getName() ?></a>
+					<a class="nav-link" href="#"><i class="fa fa-user"></i><?= " " . getName() ?></a>
 				</li>
 				<li class="nav-item active">
 					<a class=" nav-link" href="<?= base_url('UsuariosController/logout') ?>"><i
 							class="fa fa-sign-out"></i> Cerrar Sesión</a>
 				</li>
-				<?
-			} else {
-				?>
+			<?php } else { ?>
 				<li class="nav-item active">
 					<a class=" nav-link" href="<?= base_url('InicioController/login') ?>"><i class="fa fa-sign-in"></i>
 						Iniciar Sesión</a>
 				</li>
-				<?
-			} ?>
+			<?php } ?>
+
 		</ul>
 	</div>
 </nav>

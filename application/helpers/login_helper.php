@@ -10,14 +10,14 @@ function is_logged_in()
 		return true;
 }
 
-function getRole()
+function getLevel()
 {
 	$CI =& get_instance();
 	$user = $CI->session->userdata('user_data');
-	if (!isset($user))
+	if (empty($user))
 		return null;
 	else
-		return $user["role"];
+		return $user["levels_id"]*1;
 }
 
 function getName()

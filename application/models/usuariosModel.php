@@ -21,10 +21,10 @@ class UsuariosModel extends CI_Model
 	}
 
 	public function ver()
-{
-	$consulta = $this->db->query("SELECT u.id, u.name, u.first_name, u.last_name, d.name as departamento, u.role FROM users u INNER JOIN departments d ON (u.DEPARTMENTS_id = d.id);");
-	return $consulta->result();
-}
+	{
+		$consulta = $this->db->query("SELECT u.id, u.name, u.first_name, u.last_name, d.name as departamento, u.role FROM users u INNER JOIN departments d ON (u.DEPARTMENTS_id = d.id);");
+		return $consulta->result();
+	}
 
 	public function delete($id)
 	{
@@ -41,16 +41,31 @@ class UsuariosModel extends CI_Model
 				$data = array('user_data' => array(
 					'user' => $row->user,
 					'name' => $row->name . " " . $row->first_name . " " . $row->last_name,
+					'levels_id' => $row-> LEVELS_id,
 					'id' => $row->id
 				)
 				);
 				$this->session->set_userdata($data);
 				return true;
+
 			}
 		}
 		$this->session->unset_userdata('user_data');
 		return false;
 	}
+
+	public function getUser($id)
+	{
+		$consulta = $this->db->query("SELECT * FROM users WHERE id = $id");
+		return $consulta->result();
+	}
+
+	public function edit($id, $data)
+	{
+		$this->db->where('id', $id);
+		$this->db->update('users', $data);
+	}
+
 }
 
 ?>
